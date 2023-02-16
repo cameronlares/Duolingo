@@ -15,11 +15,10 @@ const Button = ({text,onPress, disabled}) => {
                 {text}
             </Text>
             </View>
-       
         </Pressable>
     )
 }
-Button.PropTypes = {
+Button.propTypes = {
     text:PropTypes.string.isRequired,
     onPress: PropTypes.func,
     disabled:PropTypes.bool

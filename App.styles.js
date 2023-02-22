@@ -7,7 +7,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 10,
     paddingTop:30,
-  }
+  },
+
 })
 
 export default styles

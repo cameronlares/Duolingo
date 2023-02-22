@@ -134,8 +134,8 @@ export default [
   {
     id: "q5",
     type: "OPEN_ENDED",
-    text: "Me gusta React Native",
-    answer: "I like react native",
+    text: "Me gusta la pan",
+    answer: "I like the bread",
   },
   {
     id: "q6",

@@ -45,8 +45,8 @@ const OpenEndedQuestion = ({ question, onCorrect, onWrong }) => {
         onSubmitEditing={Keyboard.dismiss}
       />
 
-
-      <Button text='Check' onPress={onButtonPress} disabled={false} />
+  {/* //For disabled - If no value, it is disabled, enabled if value in input field */}
+      <Button text='Check' onPress={onButtonPress} disabled={!input} />
     </>
   )
 }

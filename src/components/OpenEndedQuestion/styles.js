@@ -6,7 +6,7 @@ title:{
     fontSize:18,
     fontWeight:"bold",
     alignSelf:"flex-start",
-    backgroundColor:'red'
+  
   
 },
 row:{
@@ -22,7 +22,7 @@ mascot:{
   //Square. Height Larger than width. Other part will calculate automatically
   aspectRatio: 3/4, 
   marginRight:10,
-  backgroundColor:'red'
+
 },
 sentenceContainer:{
     borderWidth:1,

@@ -29,7 +29,6 @@ const [hasLoaded, setHasLoaded] = useState(false)
 
   // Loads when component mounts
 useEffect(()=>{
-  
 loadData();
 },[])
 

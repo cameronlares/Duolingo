@@ -6,11 +6,11 @@ import OpenEndedQuestion from './src/components/OpenEndedQuestion/OpenEndedQuest
 import question from './assets/data/allQuestions'
 import Header from './src/components/Header/Header'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import FillInTheBlank from './src/components/FillInTheBlank'
 
 const App = () => {
   //Set Index, and set 
-  const [currentQuestionIndex, SetCurrentQuestionIndex] = useState(1)
+  const [currentQuestionIndex, SetCurrentQuestionIndex] = useState(0)
   const [currentQuestion, SetCurrentQuestion] = useState(question[currentQuestionIndex]
   )
 const [lives, setLives] = useState(2)
@@ -34,7 +34,7 @@ loadData();
 
 // Save everytime lives and index are updated
 useEffect(()=>{
-  //Only Save is hasLoaded is true
+  // Only Save is hasLoaded is true
   if(hasLoaded){
     saveData()
   }
@@ -47,7 +47,7 @@ useEffect(()=>{
 
 const restart = () => {
   setLives(2);
-  SetCurrentQuestionIndex(1);
+  SetCurrentQuestionIndex(0);
 }
 
 const onWrong = () => {
@@ -79,16 +79,23 @@ if(loadedLives){
 }
 const currentQuestionIndex = await AsyncStorage.getItem('currentQuestionIndex')
 if(SetCurrentQuestionIndex){
+  SetCurrentQuestionIndex(0);
   SetCurrentQuestionIndex(parseInt(currentQuestionIndex));
 }
 
-//Loaded is true
 setHasLoaded(true)
 }
 
-//Because hasLoaded isn't done, it will not reach the second return object until hasLoaded is set to true
+// Because hasLoaded isn't done, it will not reach the second return object until hasLoaded is set to true
 if(!hasLoaded){
- return <ActivityIndicator  size="large" color="#00ff00"/>
+  <ActivityIndicator  size="large" color="#00ff00" 
+ style={
+  {
+    flex:1,
+    justifyContent:'center',
+  }
+ }
+ />
 }
 
   return (
@@ -97,22 +104,31 @@ if(!hasLoaded){
       //Index 3 divided 4 = 0.75  */}
 <Header progress={currentQuestionIndex/question.length} lives={lives}/>
 
+{currentQuestion.type === 'FILL_IN_THE_BLANK_1' && (
+  <FillInTheBlank
+         question={currentQuestion}
+         onCorrect={onCorrect}
+         onWrong={onWrong}
+      /> 
+)}
       {/* //If first side of && operator is false, the result */}
-      {currentQuestion.type === 'IMAGE_MULTIPLE_CHOICE' && (
+       {currentQuestion.type === 'IMAGE_MULTIPLE_CHOICE' && (
         <ImageMultipleChoiceQuestions
           question={currentQuestion}
           onCorrect={onCorrect}
           onWrong={onWrong}
         />
       )}
+
       {currentQuestion.type === 'OPEN_ENDED' && (
         <OpenEndedQuestion
           question={currentQuestion}
           onCorrect={onCorrect}
           onWrong={onWrong}
         />
-      )}
-    </View>
+      )} 
+
+    </View> 
   )
 }
 export default App

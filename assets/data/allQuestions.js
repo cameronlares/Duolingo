@@ -1,35 +1,34 @@
 export default [
   {
+    id: "q001",
+    type: "FILL_IN_THE_BLANK",
+    parts: [
+      { 
+        text: "la",
+        isBlank: true,
+      },
+      {
+        text: "nino",
+      },
+      {
+        text: "el",
+        isBlank: true,
+      },
+      {
+        text: "nina",
+      },  
+    ],
+    options: ["la", "el", "mujer","ella"],
+  },
+  {
     id:"q00",
-    type:"FILL_IN_THE_BLANK_1",
+    type:"FILL_IN_THE_BLANK",
     textPre:"Ella es la",
     textPost:"",
     options:["yo", "la", "mujer", "el"],
     correct: "mujer",
   },
-  // {
-  //   id: "q0",
-  //   type: "FILL_IN_THE_BLANK",
-  //   parts: [
-  //     {
-  //       text: "la",
-  //       isBlank: true,
-  //     },
-  //     {
-  //       text: "nino",
-  //       isBlank: true,
-  //     },
-  //     {
-  //       text: "el",
-  //       isBlank: true,
-  //     },
-  //     {
-  //       text: "nina",
-  //       isBlank: true,
-  //     },
-  //   ],
-  //   options: ["la", "el", "nina", "nino", "ella"],
-  // },
+
   {
     id: "q1",
     type: "IMAGE_MULTIPLE_CHOICE",

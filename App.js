@@ -104,7 +104,7 @@ if(!hasLoaded){
       //Index 3 divided 4 = 0.75  */}
 <Header progress={currentQuestionIndex/question.length} lives={lives}/>
 
-{currentQuestion.type === 'FILL_IN_THE_BLANK_1' && (
+{currentQuestion.type === 'FILL_IN_THE_BLANK' && (
   <FillInTheBlank
          question={currentQuestion}
          onCorrect={onCorrect}

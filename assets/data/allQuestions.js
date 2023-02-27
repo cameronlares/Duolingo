@@ -2,7 +2,8 @@ export default [
   {
     id:"q00",
     type:"FILL_IN_THE_BLANK_1",
-    text:"una nina, una",
+    textPre:"Ella es la",
+    textPost:"",
     options:["yo", "la", "mujer", "el"],
     correct: "mujer",
   },

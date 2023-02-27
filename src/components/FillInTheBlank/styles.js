@@ -29,6 +29,12 @@ const styles = StyleSheet.create({
         flexWrap:'wrap',
 
     },
+    woman:{
+        width:'100%',
+        //Square. Height Larger than width. Other part will calculate automatically
+        aspectRatio:1, 
+        margin:10,
+    }
  
 })
 

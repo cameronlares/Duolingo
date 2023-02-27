@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { View,Text } from 'react-native'
+import { View,Text,Image } from 'react-native'
 import styles from './styles'
 import Button from "../Button"
 import WordOption from '../WordOption/'
+import woman from '../../../assets/images/woman.png'
 
 const FillInTheBlank = ({question, onCorrect, onWrong}) => {
 
@@ -23,13 +24,18 @@ const FillInTheBlank = ({question, onCorrect, onWrong}) => {
         <> 
 <Text style={styles.title}>Complete The Sentence</Text>
 <View style={styles.row}>
-<Text style={styles.text}>{question.text}</Text>
+<Text style={styles.text}>{question.textPre}</Text>
 <View style={styles.blank}>
 {selected && <WordOption 
 text={selected}
 onPress={()=> setSelected(null)}
 />}
      </View>
+     <Text style={styles.text}>{question.textPost}</Text>
+</View>
+
+<View> 
+    <Image source={woman} style={styles.woman} resizeMode='contain'></Image>
 </View>
 
 <View style={styles.optionsContainer}> 

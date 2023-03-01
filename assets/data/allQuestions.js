@@ -6,6 +6,7 @@ export default [
       { 
         text: "la",
         isBlank: true,
+       
       },
       {
         text: "nino",
@@ -20,14 +21,14 @@ export default [
     ],
     options: ["la", "el", "mujer","ella"],
   },
-  {
-    id:"q00",
-    type:"FILL_IN_THE_BLANK",
-    textPre:"Ella es la",
-    textPost:"",
-    options:["yo", "la", "mujer", "el"],
-    correct: "mujer",
-  },
+  // {
+  //   id:"q00",
+  //   type:"FILL_IN_THE_BLANK",
+  //   textPre:"Ella es la",
+  //   textPost:"",
+  //   options:["yo", "la", "mujer", "el"],
+  //   correct: "mujer",
+  // },
 
   {
     id: "q1",

@@ -7,46 +7,79 @@ import woman from '../../../assets/images/woman.png'
 
 const FillInTheBlank = ({ question, onCorrect, onWrong }) => {
   // Keep Track Of What's Selected
-  const [selectedOptions, SetselectedOptions] = useState([])
+  const [parts, setParts] = useState(question.parts)
+
+
   const onButtonPress = () => {
-    // if (selected === question.correct) {
-    //   onCorrect()
-    //   setSelected(null)
-    // } else {
-    //   onWrong()
-    // }
+    if (checkIfCorrect()) {
+      onCorrect()
+
+    } else {
+      onWrong()
+     
+    }
+    
+  }
+
+  const checkIfCorrect = () => {
+    //if Array have 0 elements, 
+    return parts.filter(part => part.isBlank && part.selected !==part.text).length===0
   }
 
 
-  // addSelectedOption Limits The Number Of Options You Can Select To The Length Of Blank Spaces
-  const addSelectedOption = (option) => {
-    const numberOfBlanks = question.parts.filter(part => part.isBlank).length;
-if(numberOfBlanks > selectedOptions.length){
-  //Copies current array, added another value of [option] to list
-  SetselectedOptions([...selectedOptions, option])
+ const addSelectedOption = (option) => {
+//Prevents Double Clikcing The Same Option
+  if(isSelected(option)){
+    return;
+  }
+
+ const  newParts = [...parts];
+ for(let i =0; i< newParts.length; i++){
+  if(newParts[i].isBlank && !newParts[i].selected){
+    newParts[i].selected = option;
+    break;
+  }
+ }
+ setParts(newParts)
 }   
+  
+
+  const removeSelectedAt = (index) => {
+    const  newParts = [...parts];
+    newParts[index].selected = null;
+    setParts(newParts)
   }
+
+  const isSelected = (option) => {
+    return parts.filter(part => part.isBlank && part.selected ===option).length > 0
+  }
+
+const IsReadyToCheck = () => {
+  return parts.filter(part => part.isBlank &&  !part.selected).length > 0
+
+} 
 
   return (
     <>
       <Text style={styles.title}>Complete The Sentence</Text>
       <View style={styles.row}>
-        {question.parts.map((part) => {
+        {parts.map((part,index) => {
           if (part.isBlank) {
             return (
-                <View style={styles.blank}>
-                {/* {selected && (
+                <View style={styles.blank} key={index}>
+                {part.selected && (
                   <WordOption
-                   text={selected}
-                    onPress={() => setSelected(null)} />
-                )} */}
+                   text={part.selected}
+                    onPress = {()=> removeSelectedAt(index)}
+                    />
+                )}
               </View>
               );
             }
               else{
              return (<Text style={styles.text}>{part.text}</Text>)
               }
-        })}
+        })} 
 
         {/* <Text style={styles.text}>{question.textPre}</Text> */}
         {/* <View style={styles.blank}> 
@@ -60,17 +93,17 @@ if(numberOfBlanks > selectedOptions.length){
    
       <View style={styles.optionsContainer}>
         {/* //List Of Options */}
-        {question.options.map((option) => (
+        {question.options.map((option,index) => (
           <WordOption
-            key={option}
+            key={index}
             text={option}
-            isSelected={selectedOptions.includes(option)}
+            isSelected={isSelected(option)}
             onPress={() => addSelectedOption(option)}
           />
         ))}
       </View>
 
-      <Button text='Check' onPress={onButtonPress} disabled={!selectedOptions.length} />
+      <Button text='Check' onPress={onButtonPress} disabled={IsReadyToCheck()} />
     </>
   )
 }
